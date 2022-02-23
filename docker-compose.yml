@@ -11,8 +11,6 @@ services:
     container_name: return_data
     env_file:
       - .env
-    ports:
-      - 8282:80
     volumes:
       - './sources:/app:ro'
     command: "python3 app.py"
