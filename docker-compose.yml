@@ -12,7 +12,7 @@ services:
     env_file:
       - .env
     ports:
-      - 8282:8282
+      - 8282:80
     volumes:
       - './sources:/app:ro'
     command: "python3 app.py"
@@ -20,7 +20,7 @@ services:
       - web
     labels:
       - traefik.enable=true
-      - traefik.port=8282
+      - traefik.port=80
       # Traefik上のバックエンド名を記載
       - traefik.backend=return_data
       - "traefik.frontend.rule=PathPrefixStrip:/check"
