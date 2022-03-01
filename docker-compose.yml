@@ -14,21 +14,6 @@ services:
     volumes:
       - './sources:/app:ro'
     command: "python3 app.py"
-    networks:
-      - web
-    labels:
-      - traefik.enable=true
-      - traefik.port=80
-      # Traefik上のバックエンド名を記載
-      - traefik.backend=return_data
-      - "traefik.frontend.rule=PathPrefixStrip:/check"
-      - "traefik.frontend.redirect.regex=^(.*)/check$$"
-      - "traefik.frontend.redirect.replacement=$$1/check/"
-      - "traefik.frontend.rule=PathPrefixStrip:/check;ReplacePathRegex: ^/(.*) /$$1"
-      - "traefik.docker.network=web"
-      - "traefik.frontend.entryPoints=http"
-      - "traefik.protocol=http"
-    tty: true
 
 networks:
   web:
